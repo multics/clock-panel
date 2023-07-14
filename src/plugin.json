@@ -1,15 +1,15 @@
 {
   "type": "panel",
   "name": "Clock",
-  "id": "grafana-clock-panel",
+  "id": "multics-clock-panel",
 
   "skipDataQuery": true,
 
   "info": {
-    "description": "Clock panel for grafana",
+    "description": "时钟面板",
     "author": {
-      "name": "Grafana Labs",
-      "url": "https://grafana.com"
+      "name": "multics updated from Grafana Labs",
+      "url": "https://github.com/multics/clock-panel"
     },
     "keywords": ["clock", "panel"],
     "logos": {
@@ -17,8 +17,14 @@
       "large": "img/clock.svg"
     },
     "links": [
-      {"name": "Project site", "url": "https://github.com/grafana/clock-panel"},
-      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+      {
+        "name": "Project site",
+        "url": "https://github.com/multics/clock-panel"
+      },
+      {
+        "name": "MIT License",
+        "url": "https://github.com/multics/clock-panel/blob/master/LICENSE"
+      }
     ],
     "screenshots": [
       {"name": "Showcase", "path": "img/screenshot-showcase.png"},

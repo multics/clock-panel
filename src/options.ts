@@ -10,23 +10,23 @@ export const optionsBuilder = (builder: PanelOptionsEditorBuilder<ClockOptions>)
   builder
     .addRadio({
       path: 'mode',
-      name: 'Mode',
+      name: '模式',
       settings: {
         options: [
-          { value: ClockMode.time, label: 'Time' },
-          { value: ClockMode.countdown, label: 'Countdown' },
-          { value: ClockMode.countup, label: 'Countup' },
+          { value: ClockMode.time, label: '时间' },
+          { value: ClockMode.countdown, label: '倒计时' },
+          { value: ClockMode.countup, label: '计时' },
         ],
       },
       defaultValue: ClockMode.time,
     })
     .addRadio({
       path: 'refresh',
-      name: 'Refresh',
+      name: '刷新',
       settings: {
         options: [
-          { value: ClockRefresh.sec, label: 'Every second' },
-          { value: ClockRefresh.dashboard, label: 'With the dashboard' },
+          { value: ClockRefresh.sec, label: '每秒刷新' },
+          { value: ClockRefresh.dashboard, label: '跟随面板刷新' },
         ],
       },
       defaultValue: ClockRefresh.sec,
@@ -34,7 +34,7 @@ export const optionsBuilder = (builder: PanelOptionsEditorBuilder<ClockOptions>)
     .addCustomEditor({
       id: 'bgColor',
       path: 'bgColor',
-      name: 'Background Color',
+      name: '背景颜色',
       editor: ColorEditor,
       defaultValue: '',
     })
@@ -61,7 +61,7 @@ function addCountdown(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'countdownSettings.endCountdownTime',
-      name: 'End Time',
+      name: '结束时间',
       settings: {
         placeholder: 'ISO 8601 or RFC 2822 Date time',
       },
@@ -71,7 +71,7 @@ function addCountdown(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'countdownSettings.endText',
-      name: 'End Text',
+      name: '结束文字',
       defaultValue: '00:00:00',
       showIf: (o) => o.mode === ClockMode.countdown,
     })
@@ -79,9 +79,9 @@ function addCountdown(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'countdownSettings.customFormat',
-      name: 'Custom format',
+      name: '自定义',
       settings: {
-        placeholder: 'optional',
+        placeholder: '可选',
       },
       defaultValue: undefined,
       showIf: (o) => o.mode === ClockMode.countdown,
@@ -98,7 +98,7 @@ function addCountup(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'countupSettings.beginCountupTime',
-      name: 'Begin Time',
+      name: '开始时间',
       settings: {
         placeholder: 'ISO 8601 or RFC 2822 Date time',
       },
@@ -108,7 +108,7 @@ function addCountup(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'countupSettings.beginText',
-      name: 'Begin Text',
+      name: '开始文字',
       defaultValue: '00:00:00',
       showIf: (o) => o.mode === ClockMode.countup,
     })
@@ -116,9 +116,9 @@ function addCountup(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'countupSettings.customFormat',
-      name: 'Custom format',
+      name: '自定义',
       settings: {
-        placeholder: 'optional',
+        placeholder: '可选',
       },
       defaultValue: undefined,
       showIf: (o) => o.mode === ClockMode.countup,
@@ -129,18 +129,18 @@ function addCountup(builder: PanelOptionsEditorBuilder<ClockOptions>) {
 // TIME FORMAT
 //---------------------------------------------------------------------
 function addTimeFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
-  const category = ['Time Format'];
+  const category = ['时间格式'];
 
   builder
     .addRadio({
       category,
       path: 'clockType',
-      name: 'Clock Type',
+      name: '时钟',
       settings: {
         options: [
-          { value: ClockType.H24, label: '24 Hour' },
-          { value: ClockType.H12, label: '12 Hour' },
-          { value: ClockType.Custom, label: 'Custom' },
+          { value: ClockType.H24, label: '24 小时制' },
+          { value: ClockType.H12, label: '12 小时制' },
+          { value: ClockType.Custom, label: '自定' },
         ],
       },
       defaultValue: ClockType.H24,
@@ -148,10 +148,9 @@ function addTimeFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'timeSettings.customFormat',
-      name: 'Time Format',
-      description: 'the date formatting pattern',
+      name: '时间格式',
       settings: {
-        placeholder: 'date format',
+        placeholder: '',
       },
       defaultValue: undefined,
       showIf: (opts) => opts.clockType === ClockType.Custom,
@@ -159,20 +158,20 @@ function addTimeFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'timeSettings.fontSize',
-      name: 'Font size',
+      name: '字体大小',
       settings: {
-        placeholder: 'Font size (e.g. 12px)',
+        placeholder: '20px',
       },
-      defaultValue: '12px',
+      defaultValue: '20px',
     })
     .addRadio({
       category,
       path: 'timeSettings.fontWeight',
-      name: 'Font weight',
+      name: '字体粗细',
       settings: {
         options: [
-          { value: FontWeight.normal, label: 'Normal' },
-          { value: FontWeight.bold, label: 'Bold' },
+          { value: FontWeight.normal, label: '正常' },
+          { value: FontWeight.bold, label: '粗体' },
         ],
       },
       defaultValue: FontWeight.normal,
@@ -197,18 +196,18 @@ function getVariableOptions() {
 // TIMEZONE
 //---------------------------------------------------------------------
 function addTimeZone(builder: PanelOptionsEditorBuilder<ClockOptions>) {
-  const category = ['Timezone'];
+  const category = ['时区'];
 
   const timezones = getTimeZoneNames().map((n) => {
     return { label: n, value: n };
   });
-  timezones.unshift({ label: 'Default', value: '' });
+  timezones.unshift({ label: '北京时间', value: '' });
 
   builder
     .addSelect({
       category,
       path: 'timezone',
-      name: 'Timezone',
+      name: '时区选择',
       settings: {
         options: timezones,
         getOptions: async () => {
@@ -224,13 +223,13 @@ function addTimeZone(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addBooleanSwitch({
       category,
       path: 'timezoneSettings.showTimezone',
-      name: 'Show Timezone',
+      name: '显示时区',
       defaultValue: false,
     })
     .addSelect({
       category,
       path: 'timezoneSettings.zoneFormat',
-      name: 'Display Format',
+      name: '显示格式',
       settings: {
         options: [
           { value: ZoneFormat.name, label: 'Normal' },
@@ -246,21 +245,21 @@ function addTimeZone(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'timezoneSettings.fontSize',
-      name: 'Font size',
+      name: '字体大小',
       settings: {
-        placeholder: 'font size',
+        placeholder: '20px',
       },
-      defaultValue: '12px',
+      defaultValue: '20px',
       showIf: (s) => s.timezoneSettings?.showTimezone,
     })
     .addRadio({
       category,
       path: 'timezoneSettings.fontWeight',
-      name: 'Font weight',
+      name: '字体粗细',
       settings: {
         options: [
-          { value: FontWeight.normal, label: 'Normal' },
-          { value: FontWeight.bold, label: 'Bold' },
+          { value: FontWeight.normal, label: '正常' },
+          { value: FontWeight.bold, label: '粗体' },
         ],
       },
       defaultValue: FontWeight.normal,
@@ -278,15 +277,15 @@ function addDateFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addBooleanSwitch({
       category,
       path: 'dateSettings.showDate',
-      name: 'Show Date',
+      name: '显示日期',
       defaultValue: false,
     })
     .addTextInput({
       category,
       path: 'dateSettings.dateFormat',
-      name: 'Date Format',
+      name: '日期格式',
       settings: {
-        placeholder: 'Enter date format',
+        placeholder: 'YYYY-MM-DD',
       },
       defaultValue: 'YYYY-MM-DD',
       showIf: (s) => s.dateSettings?.showDate,
@@ -294,9 +293,9 @@ function addDateFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'dateSettings.locale',
-      name: 'Locale',
+      name: '地区',
       settings: {
-        placeholder: 'Enter locale: de, fr, es, ... (default: en)',
+        placeholder: 'zh_Hans',
       },
       defaultValue: '',
       showIf: (s) => s.dateSettings?.showDate,
@@ -304,9 +303,9 @@ function addDateFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addTextInput({
       category,
       path: 'dateSettings.fontSize',
-      name: 'Font size',
+      name: '字体大小',
       settings: {
-        placeholder: 'date format',
+        placeholder: '20px',
       },
       defaultValue: '20px',
       showIf: (s) => s.dateSettings?.showDate,
@@ -314,11 +313,11 @@ function addDateFormat(builder: PanelOptionsEditorBuilder<ClockOptions>) {
     .addRadio({
       category,
       path: 'dateSettings.fontWeight',
-      name: 'Font weight',
+      name: '字体粗细',
       settings: {
         options: [
-          { value: FontWeight.normal, label: 'Normal' },
-          { value: FontWeight.bold, label: 'Bold' },
+          { value: FontWeight.normal, label: '正常' },
+          { value: FontWeight.bold, label: '粗体' },
         ],
       },
       defaultValue: FontWeight.normal,
