@@ -14,6 +14,7 @@
     "test": "jest --watch --onlyChanged",
     "test:ci": "jest --maxWorkers 4",
     "typecheck": "tsc --noEmit",
+    "setup": "yarn install --pure-lockfile",
     "sign": "npx --yes @grafana/sign-plugin"
   },
   "keywords": [
